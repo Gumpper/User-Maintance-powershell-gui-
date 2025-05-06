@@ -1,4 +1,12 @@
-﻿# Load the necessary assembly for forms
+# Check if the AD module is installed
+if (!(Get-Module -ListAvailable -Name ActiveDirectory)) {
+    Write-Host "Active Directory module not found. Installing..."
+    Add-WindowsFeature RSAT-AD-PowerShell
+} else {
+    Write-Host "Active Directory module is already installed."
+}
+
+ # Load the necessary assembly for forms
 Add-Type -AssemblyName System.Windows.Forms
 
 # Create the form
